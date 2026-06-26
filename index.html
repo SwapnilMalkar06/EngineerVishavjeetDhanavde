@@ -1,0 +1,2910 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Construction | Civil Engineer & PWD Class-I Contractor</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Unique Construction is a Class-I registered civil engineering firm and government contractor with 15+ years of experience delivering premium residential, commercial, and infrastructure projects across Maharashtra.">
+    <meta name="keywords" content="Unique Construction, Civil Engineer, PWD Contractor, Government Contractor Maharashtra, Structural Design, Pune Civil Engineer, Vishwajeet Dhanwade">
+    <meta name="author" content="Unique Construction">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- DESIGN TOKENS & VARIABLES --- */
+        :root {
+            --bg-base: #07090e;
+            --bg-surface: #0e1320;
+            --bg-surface-elevated: #161e30;
+            
+            --primary: #f97316; /* Safety Orange */
+            --primary-hover: #ea580c;
+            --primary-rgb: 249, 115, 22;
+            
+            --accent: #f59e0b; /* Amber Gold */
+            --accent-hover: #d97706;
+            --accent-rgb: 245, 158, 11;
+            
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            
+            --border: rgba(255, 255, 255, 0.07);
+            --border-hover: rgba(249, 115, 22, 0.25);
+            
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        /* --- GLOBAL BASICS --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-body);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background grid blueprint & glow effects */
+        .blueprint-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: -10;
+            opacity: 0.35;
+        }
+
+        .glow-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: -9;
+        }
+
+        .glow-1 {
+            top: 10%;
+            right: 5%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+        }
+
+        .glow-2 {
+            top: 40%;
+            left: -10%;
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+        }
+
+        .glow-3 {
+            bottom: 10%;
+            right: -5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+        }
+
+        /* --- UTILITIES / LAYOUTS --- */
+        section {
+            padding: 120px 8% 80px;
+            max-width: 1440px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 16px;
+            height: 2px;
+            background-color: var(--primary);
+            display: inline-block;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.7);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: var(--transition-smooth);
+            gap: 10px;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            color: var(--text-primary);
+            box-shadow: 0 4px 20px rgba(var(--primary-rgb), 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(var(--primary-rgb), 0.4);
+            filter: brightness(1.1);
+        }
+
+        .btn-secondary {
+            background: rgba(14, 19, 32, 0.6);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            backdrop-filter: blur(8px);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            background: rgba(14, 19, 32, 0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(var(--primary-rgb), 0.1);
+        }
+
+        .btn svg {
+            transition: var(--transition-smooth);
+        }
+
+        .btn:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* --- SCROLL REVEAL ANIMATIONS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.15s; }
+        .delay-2 { transition-delay: 0.3s; }
+        .delay-3 { transition-delay: 0.45s; }
+
+        /* --- FLOATING NAVIGATION DOCK --- */
+        nav {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1240px;
+            background: rgba(14, 19, 32, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 14px 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition-smooth);
+        }
+
+        nav.scrolled {
+            top: 12px;
+            background: rgba(7, 9, 14, 0.85);
+            border-color: rgba(255, 255, 255, 0.12);
+            padding: 10px 4%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-symbol {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #ffffff;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.3);
+        }
+
+        .logo-text h2 {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+            color: var(--text-primary);
+        }
+
+        .logo-text span {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            color: var(--primary);
+            letter-spacing: 2px;
+            font-weight: 600;
+            display: block;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+            position: relative;
+            padding: 6px 0;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: var(--transition-smooth);
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        /* Nav CTA */
+        .nav-cta {
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-cta:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.3);
+        }
+
+        /* Hamburger button for mobile */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 18px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 2px;
+            background-color: var(--text-primary);
+            transition: var(--transition-smooth);
+            border-radius: 2px;
+        }
+
+        /* Active states of mobile toggle lines */
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            padding: 180px 8% 80px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 60px;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .hero-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-badge {
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(249, 115, 22, 0.08);
+            border: 1px solid rgba(249, 115, 22, 0.25);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--primary);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 28px;
+            box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.05);
+        }
+
+        .hero-badge span {
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .hero-info h1 {
+            font-family: var(--font-heading);
+            font-size: 4.8rem;
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+        }
+
+        .hero-info h1 span {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-info p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 580px;
+            line-height: 1.65;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Hero Image/Interactive Display */
+        .hero-visual {
+            position: relative;
+            width: 100%;
+            height: 520px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-card {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(14, 19, 32, 0.75), rgba(7, 9, 14, 0.95)),
+                url('istockphoto-1796880749-1024x1024.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Geometric layout accent overlay */
+        .hero-visual::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: calc(100% + 40px);
+            height: calc(100% + 40px);
+            border: 1.5px dashed rgba(249, 115, 22, 0.2);
+            border-radius: 28px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-stat-box {
+            position: absolute;
+            background: rgba(14, 19, 32, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-hover);
+            border-radius: 12px;
+            padding: 16px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            z-index: 10;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .fs-box-1 {
+            bottom: 40px;
+            left: -15px;
+            animation-delay: 0s;
+        }
+
+        .fs-box-2 {
+            top: 40px;
+            right: -15px;
+            animation-delay: 3s;
+            border-color: rgba(245, 158, 11, 0.25);
+        }
+
+        .floating-stat-box .num {
+            font-family: var(--font-mono);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.1;
+        }
+
+        .fs-box-2 .num {
+            color: var(--accent);
+        }
+
+        .floating-stat-box .lbl {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* --- STATS GRID OVERVIEW --- */
+        .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            width: 100%;
+            background: rgba(14, 19, 32, 0.4);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px 40px;
+            margin-top: 80px;
+            backdrop-filter: blur(8px);
+        }
+
+        .stat-item {
+            text-align: center;
+            border-right: 1px solid var(--border);
+            padding: 10px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 3.4rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* --- ACCREDITATIONS TICKER MARQUEE --- */
+        .marquee-strip {
+            background: #090d16;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 22px 0;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-track {
+            display: inline-block;
+            white-space: nowrap;
+            will-change: transform;
+            animation: marquee 25s linear infinite;
+        }
+
+        .marquee-node {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin: 0 45px;
+            text-transform: uppercase;
+        }
+
+        .marquee-node::after {
+            content: '✦';
+            color: var(--primary);
+            margin-left: 90px;
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        /* Structural listing cards */
+        .about-qualifications {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 36px;
+        }
+
+        .qual-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .qual-card:hover {
+            border-color: var(--primary-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(var(--primary-rgb), 0.08);
+        }
+
+        .qual-icon {
+            color: var(--primary);
+            width: 32px;
+            height: 32px;
+        }
+
+        .qual-card h4 {
+            font-family: var(--font-heading);
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .qual-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+            line-height: 1.3;
+        }
+
+        .affiliations-dock {
+            margin-top: 40px;
+        }
+
+        .affiliations-dock h3 {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .affiliations-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .affiliation-pill {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: var(--transition-smooth);
+        }
+
+        .affiliation-pill:hover {
+            background: rgba(249, 115, 22, 0.05);
+            border-color: var(--primary);
+            color: var(--text-primary);
+        }
+
+        /* Image Display with architectural offset borders */
+        .about-photo-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 460px;
+            margin: 0 auto;
+        }
+
+        .about-photo-frame {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--bg-surface);
+            aspect-ratio: 0.88;
+        }
+
+        .about-photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            filter: grayscale(15%) brightness(0.9);
+            transition: var(--transition-smooth);
+        }
+
+        .about-photo-wrapper:hover .about-photo-frame img {
+            filter: grayscale(0%) brightness(1);
+            transform: scale(1.03);
+        }
+
+        .about-photo-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -12px;
+            border: 2px solid var(--accent);
+            border-radius: 20px;
+            z-index: -1;
+            transform: translate(6px, 8px);
+            pointer-events: none;
+            transition: var(--transition-smooth);
+        }
+
+        .about-photo-wrapper:hover::before {
+            transform: translate(0px, 0px);
+            border-color: var(--primary);
+        }
+
+        /* Credentials Badge */
+        .reg-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -15px;
+            background: linear-gradient(135deg, var(--bg-surface-elevated), var(--bg-surface));
+            border: 1.5px solid var(--accent);
+            border-radius: 10px;
+            padding: 14px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        .reg-badge span {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .reg-badge strong {
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        /* --- SERVICES GRID SECTION --- */
+        .services-desc {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+            align-items: flex-end;
+        }
+
+        .services-desc p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(22, 30, 48, 0.3), rgba(14, 19, 32, 0.5));
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px 32px;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(var(--primary-rgb), 0.08), transparent 50%);
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 30px rgba(var(--primary-rgb), 0.12);
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
+        }
+
+        .service-card .icon-wrap {
+            color: var(--primary);
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(249, 115, 22, 0.08);
+            border-radius: 10px;
+            border: 1px solid rgba(249, 115, 22, 0.15);
+            transition: var(--transition-smooth);
+        }
+
+        .service-card:hover .icon-wrap {
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.25);
+        }
+
+        .service-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .service-card .arrow-icon {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: var(--text-muted);
+            transition: var(--transition-smooth);
+        }
+
+        .service-card:hover .arrow-icon {
+            color: var(--primary);
+            transform: translate(3px, -3px);
+        }
+
+        /* --- PROJECTS SECTION --- */
+        #projects {
+            background: #090c13;
+        }
+
+        .portfolio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .filter-dock {
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            padding: 6px;
+            border-radius: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-secondary);
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary);
+            color: var(--text-primary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .project-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 0.9;
+            border: 1px solid var(--border);
+            transition: var(--transition-smooth);
+            display: block;
+        }
+
+        /* JS Filtering trigger transitions */
+        .project-card.hide {
+            display: none;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(7, 9, 14, 0.95) 0%, rgba(7, 9, 14, 0.4) 50%, transparent 100%);
+            z-index: 1;
+            transition: var(--transition-smooth);
+        }
+
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .project-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-card-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .proj-pill {
+            align-self: flex-start;
+            background: rgba(249, 115, 22, 0.15);
+            border: 1px solid rgba(249, 115, 22, 0.35);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-card-info h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .project-card-info p {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .project-card-info p::before {
+            content: '📍';
+            font-size: 0.8rem;
+        }
+
+        /* Large Grid Highlight */
+        .project-card.featured {
+            grid-column: span 2;
+            aspect-ratio: 1.88;
+        }
+
+        /* --- METHODOLOGY / PROCESS --- */
+        .process-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+            align-items: flex-end;
+        }
+
+        .process-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        .timeline-steps {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            position: relative;
+        }
+
+        /* Connector progress line */
+        .timeline-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            width: 80%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.08);
+            z-index: 1;
+        }
+
+        /* Interactive loading bar indicator */
+        .timeline-progress-line {
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            width: 0%;
+            height: 2.5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            z-index: 2;
+            transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 8px rgba(var(--primary-rgb), 0.5);
+        }
+
+        .step-node {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .step-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--bg-surface);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            transition: var(--transition-smooth);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .step-node.active .step-circle {
+            border-color: var(--primary);
+            background: var(--bg-surface-elevated);
+            color: var(--primary);
+            box-shadow: 0 0 25px rgba(var(--primary-rgb), 0.25);
+            transform: scale(1.08);
+        }
+
+        .step-node.completed .step-circle {
+            border-color: var(--accent);
+            background: var(--bg-surface);
+            color: var(--accent);
+        }
+
+        .step-node h4 {
+            font-family: var(--font-heading);
+            font-size: 1.12rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            transition: var(--transition-smooth);
+        }
+
+        .step-node.active h4 {
+            color: var(--primary);
+        }
+
+        .step-node p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+        }
+
+        /* --- TESTIMONIALS SLIDER SECTION --- */
+        .slider-layout {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            padding: 40px 0 20px;
+        }
+
+        .slider-viewport {
+            width: 100%;
+            position: relative;
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 300%; /* 3 slides */
+        }
+
+        .slide {
+            width: 33.333%;
+            flex-shrink: 0;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .quote-icon {
+            width: 60px;
+            height: 60px;
+            color: rgba(249, 115, 22, 0.15);
+            margin-bottom: 24px;
+        }
+
+        .slide p.quote-body {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 500;
+            line-height: 1.5;
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            max-width: 760px;
+        }
+
+        .author-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .author-info h4 {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .author-info span {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--primary);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Controls */
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 50px;
+        }
+
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .slider-dot.active {
+            background: var(--primary);
+            transform: scale(1.3);
+            box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.4);
+        }
+
+        /* --- CONTACT & INQUIRY SECTION --- */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 0.98fr 1.02fr;
+            gap: 80px;
+        }
+
+        .contact-text-wrap {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-text-wrap p {
+            color: var(--text-secondary);
+            font-size: 1.08rem;
+            margin-bottom: 45px;
+            max-width: 480px;
+        }
+
+        .contact-cards-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .c-info-card {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            background: rgba(14, 19, 32, 0.4);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 30px;
+            transition: var(--transition-smooth);
+        }
+
+        .c-info-card:hover {
+            border-color: var(--primary-hover);
+            background: rgba(14, 19, 32, 0.6);
+            transform: translateX(4px);
+        }
+
+        .c-info-icon {
+            color: var(--primary);
+            background: rgba(249, 115, 22, 0.08);
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid rgba(249, 115, 22, 0.15);
+        }
+
+        .c-info-content h4 {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+        }
+
+        .c-info-content p {
+            font-family: var(--font-heading);
+            font-size: 1.12rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0;
+        }
+
+        /* Contact Form redesign */
+        .contact-form-container {
+            background: linear-gradient(135deg, rgba(22, 30, 48, 0.35), rgba(14, 19, 32, 0.6));
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 24px;
+            z-index: 5;
+        }
+
+        /* Label float mechanism styling */
+        .form-control {
+            width: 100%;
+            background: rgba(14, 19, 32, 0.55);
+            border: 1px solid var(--border);
+            padding: 16px 20px;
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            background: rgba(7, 9, 14, 0.8);
+            box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.15);
+            outline: none;
+        }
+
+        .form-label {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            transition: var(--transition-smooth);
+            pointer-events: none;
+            font-size: 0.95rem;
+            z-index: 6;
+        }
+
+        textarea.form-control {
+            height: 120px;
+            resize: none;
+        }
+
+        textarea.form-control ~ .form-label {
+            top: 24px;
+            transform: none;
+        }
+
+        /* Floating label trigger conditions */
+        .form-control:focus ~ .form-label,
+        .form-control:not(:placeholder-shown) ~ .form-label {
+            top: 0;
+            transform: translateY(-50%) scale(0.85);
+            left: 15px;
+            background: var(--bg-surface);
+            padding: 0 8px;
+            color: var(--primary);
+        }
+
+        .submit-btn-wrap {
+            margin-top: 10px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px 30px;
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #ffffff;
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(var(--primary-rgb), 0.25);
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(var(--primary-rgb), 0.4);
+            filter: brightness(1.1);
+        }
+
+        .submit-btn svg {
+            transition: var(--transition-smooth);
+        }
+
+        .submit-btn:hover svg {
+            transform: translate(3px, -3px);
+        }
+
+        .form-footer-note {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        /* Form Success Overlay Overlay */
+        .success-overlay {
+            position: absolute;
+            inset: 0;
+            background: var(--bg-surface);
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-smooth);
+        }
+
+        .success-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .success-checkmark {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: rgba(245, 158, 11, 0.08);
+            border: 2.5px solid var(--accent);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.2);
+            animation: scale-up-success 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .success-overlay h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .success-overlay p {
+            color: var(--text-secondary);
+            font-size: 0.98rem;
+            line-height: 1.5;
+            max-width: 320px;
+            margin-bottom: 30px;
+        }
+
+        @keyframes scale-up-success {
+            0% { transform: scale(0.6); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* --- COMPOSE EMAIL INTERACTIVE REDESIGN --- */
+        .email-cta-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px 10px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .email-cta-icon-wrap {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .email-pulse-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(var(--primary-rgb), 0.15);
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.9; }
+            50% { transform: scale(1.2); opacity: 0.3; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .email-cta-icon {
+            width: 48px;
+            height: 48px;
+            color: var(--primary);
+            filter: drop-shadow(0 0 10px rgba(var(--primary-rgb), 0.5));
+            z-index: 2;
+        }
+
+        .email-cta-screen h3 {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .email-cta-screen p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 28px;
+            max-width: 380px;
+        }
+
+        .compose-cta-btn {
+            max-width: 250px;
+        }
+
+        .email-composer-screen {
+            display: flex;
+            flex-direction: column;
+            border-radius: 12px;
+            background: rgba(8, 12, 24, 0.7);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            animation: slideUpComposer 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpComposer {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .composer-window-header {
+            display: flex;
+            align-items: center;
+            background: rgba(14, 21, 37, 0.9);
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .composer-window-dots {
+            display: flex;
+            gap: 6px;
+            margin-right: 16px;
+        }
+
+        .window-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .window-dot.red { background: #ff5f56; }
+        .window-dot.yellow { background: #ffbd2e; }
+        .window-dot.green { background: #27c93f; }
+
+        .composer-window-title {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            flex-grow: 1;
+            text-align: center;
+            margin-right: 48px; /* Offset the dots for centering */
+        }
+
+        .composer-header-row {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.9rem;
+        }
+
+        .composer-label {
+            color: var(--text-muted);
+            width: 70px;
+            font-weight: 500;
+        }
+
+        .composer-chip-email {
+            background: rgba(var(--primary-rgb), 0.12);
+            color: var(--primary);
+            border: 1px solid rgba(var(--primary-rgb), 0.25);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+        }
+
+        .composer-input-field {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            width: 100%;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .composer-body-row {
+            padding: 15px 20px;
+            flex-grow: 1;
+        }
+
+        .composer-textarea {
+            width: 100%;
+            height: 160px;
+            background: transparent;
+            border: none;
+            resize: none;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            outline: none;
+        }
+
+        .composer-textarea:focus {
+            outline: none;
+        }
+
+        .composer-textarea.warning-shake {
+            animation: shakeInput 0.4s ease-in-out;
+            border-bottom: 1px solid #ff5f56;
+        }
+
+        @keyframes shakeInput {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+
+        .composer-actions-row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 16px 20px;
+            background: rgba(14, 21, 37, 0.5);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            gap: 12px;
+        }
+
+        .composer-actions-row .cancel-btn {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .composer-actions-row .send-btn {
+            width: auto;
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            border-radius: 6px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #04060b;
+            border-top: 1px solid var(--border);
+            padding: 80px 8% 40px;
+            position: relative;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 0.80fr 0.85fr;
+            gap: 60px;
+            max-width: 1440px;
+            margin: 0 auto 60px;
+        }
+
+        .footer-desc {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin-top: 18px;
+            max-width: 340px;
+        }
+
+        .footer-links-col h4 {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+        }
+
+        .footer-links-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links-col a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-links-col a:hover {
+            color: var(--primary);
+            padding-left: 4px;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            gap: 12px;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            margin-bottom: 12px;
+        }
+
+        .footer-bottom {
+            max-width: 1440px;
+            margin: 0 auto;
+            border-top: 1px solid var(--border);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-bottom-txt {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* --- STABILIZATION / ANIMATIONS KEYFRAMES --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.6; }
+            50% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(0.9); opacity: 0.6; }
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- MOBILE RESPONSIBILITY BREAKPOINTS --- */
+        @media (max-width: 1024px) {
+            .section-title {
+                font-size: 2.7rem;
+            }
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                padding-top: 150px;
+                min-height: auto;
+            }
+            .hero-info {
+                text-align: center;
+                align-items: center;
+            }
+            .hero-badge {
+                align-self: center;
+            }
+            .hero-info h1 {
+                font-size: 3.8rem;
+            }
+            .hero-visual {
+                height: 420px;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            .fs-box-1 {
+                left: 15px;
+            }
+            .fs-box-2 {
+                right: 15px;
+            }
+            .about-layout {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            .services-desc,
+            .process-header {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .project-card.featured {
+                grid-column: span 2;
+                aspect-ratio: 1.4;
+            }
+            .timeline-steps {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .timeline-steps::before,
+            .timeline-progress-line {
+                display: none;
+            }
+            .step-node {
+                flex-direction: row;
+                text-align: left;
+                align-items: flex-start;
+                gap: 24px;
+            }
+            .step-circle {
+                margin-bottom: 0;
+                flex-shrink: 0;
+            }
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Mobile Navigation Drawer Overlay */
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                height: 100vh;
+                background: #090e18;
+                border-left: 1px solid var(--border);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                transition: var(--transition-smooth);
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                right: 0;
+                box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8);
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-info h1 {
+                font-size: 2.8rem;
+            }
+
+            .stats-strip {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 24px;
+            }
+
+            .stat-item {
+                border-right: none;
+            }
+            .stat-item:nth-child(odd) {
+                border-right: 1px solid var(--border);
+            }
+            .stat-item:nth-child(1), .stat-item:nth-child(2) {
+                border-bottom: 1px solid var(--border);
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+            }
+
+            .about-qualifications {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .project-card.featured {
+                grid-column: span 1;
+                aspect-ratio: 0.9;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .contact-form-container {
+                padding: 30px 24px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Blueprint Grid Visualizer -->
+    <div class="blueprint-grid"></div>
+
+    <!-- Glowing Background Lights -->
+    <div class="glow-blob glow-1"></div>
+    <div class="glow-blob glow-2"></div>
+    <div class="glow-blob glow-3"></div>
+
+    <!-- FLOATING GLASS NAVBAR -->
+    <nav id="navbar">
+        <div class="logo">
+            <div class="logo-symbol">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:22px; height:22px;">
+                    <path d="M19 2H5c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 18H6v-2h12v2zm0-4H6v-2h12v2zm0-4H6V8h12v4zm0-6H6V4h12v2z"/>
+                </svg>
+            </div>
+            <div class="logo-text">
+                <h2>Unique Construction</h2>
+                <span>CIVIL ENGINEER & CONTRACTOR</span>
+            </div>
+        </div>
+        
+        <div class="nav-menu" id="nav-links">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#process" class="nav-link">Process</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+
+        <a href="#contact" class="nav-cta">Get a Quote →</a>
+
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero" id="home">
+        <div class="hero-info reveal">
+            <div class="hero-badge">
+                <span></span>CLASS-I REGISTERED CONTRACTOR • PWD MAHARASHTRA
+            </div>
+            <h1>Building India,<br><span>one foundation</span><br>at a time.</h1>
+            <p>We are <strong>Unique Construction</strong>, led by government-registered contractor <strong>Mr. Vishwajeet Dhanwade</strong>, with 15+ years of experience delivering premium residential, commercial, and public infrastructure across Maharashtra, India.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary">
+                    Request a Quote
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+                <a href="tel:+918793690714" class="btn btn-secondary">
+                    📞 +91 87936 90714
+                </a>
+            </div>
+        </div>
+        
+        <div class="hero-visual reveal delay-1">
+            <div class="hero-card"></div>
+            
+            <div class="floating-stat-box fs-box-1">
+                <span class="num">15+</span>
+                <span class="lbl">Years in Trade</span>
+            </div>
+            
+            <div class="floating-stat-box fs-box-2">
+                <span class="num">120+</span>
+                <span class="lbl">Built Deliveries</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ACCREDITATIONS TICKER -->
+    <section class="marquee-strip" aria-label="Accreditations marquee">
+        <div class="marquee-track" id="marquee-track">
+            <span class="marquee-node">PWD Maharashtra Registered</span>
+            <span class="marquee-node">MoRTH Listed Contractor</span>
+            <span class="marquee-node">ISO 9001:2015 Certified</span>
+            <span class="marquee-node">RERA Compliant Projects</span>
+            <span class="marquee-node">Indian Concrete Institute Member</span>
+            <!-- Repeating nodes for seamless scroll loop -->
+            <span class="marquee-node">PWD Maharashtra Registered</span>
+            <span class="marquee-node">MoRTH Listed Contractor</span>
+            <span class="marquee-node">ISO 9001:2015 Certified</span>
+            <span class="marquee-node">RERA Compliant Projects</span>
+            <span class="marquee-node">Indian Concrete Institute Member</span>
+        </div>
+    </section>
+
+    <!-- STATS OVERVIEW SECTION -->
+    <section style="padding-top: 60px; padding-bottom: 60px;">
+        <div class="stats-strip reveal">
+            <div class="stat-item">
+                <div class="stat-number" data-target="15" data-suffix="+">0</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="120" data-suffix="+">0</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="38" data-suffix="">0</div>
+                <div class="stat-label">Govt. Tenders Executed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="98" data-suffix="%">0</div>
+                <div class="stat-label">Client Satisfaction</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <div class="about-layout">
+            <div class="about-text reveal">
+                <div class="section-label">ABOUT — 01</div>
+                <h2 class="section-title">Engineering trust through <span>precision and discipline.</span></h2>
+                <p>At <strong>Unique Construction</strong>, founded by civil engineer and government contractor Mr. Vishwajeet Dhanwade, my team and I have delivered structures for over 15 years that respect the codebook, the budget, and the timeline. From RCC bridges in rural Maharashtra to high-rises in Pune, every project is treated as a public promise.</p>
+                <p>We work as a vertically integrated team — structural design, estimation, statutory liaison, execution, and aftercare — so clients speak to one accountable engineer from concept to completion.</p>
+                
+                <div class="about-qualifications">
+                    <div class="qual-card">
+                        <svg class="qual-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <h4>M.Tech Structural</h4>
+                        <p>VJTI Mumbai</p>
+                    </div>
+                    <div class="qual-card">
+                        <svg class="qual-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                        <h4>Class-I Contractor</h4>
+                        <p>PWD Maharashtra</p>
+                    </div>
+                    <div class="qual-card">
+                        <svg class="qual-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <h4>Based In</h4>
+                        <p>Vita, Maharashtra</p>
+                    </div>
+                </div>
+
+                <div class="affiliations-dock">
+                    <h3>Credentials & Affiliations</h3>
+                    <div class="affiliations-flex">
+                        <span class="affiliation-pill">B.E. Civil — COEP Pune</span>
+                        <span class="affiliation-pill">M.Tech Structural — VJTI Mumbai</span>
+                        <span class="affiliation-pill">Class-I Contractor — PWD Maharashtra</span>
+                        <span class="affiliation-pill">Member, Institution of Engineers (IEI)</span>
+                        <span class="affiliation-pill">Member, Indian Concrete Institute</span>
+                        <span class="affiliation-pill">ISO 9001:2015 Quality Certified</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-photo-wrapper reveal delay-2">
+                <div class="about-photo-frame">
+                    <img src="Profile_Photo.png" alt="Mr. Vishwajeet Dhanwade in professional attire">
+                </div>
+                <div class="reg-badge">
+                    <span>LICENSE NO.</span>
+                    <strong>PWD/MH/CL-I/24218</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services">
+        <div class="section-label">SERVICES - 02</div>
+        <div class="services-desc reveal">
+            <h2 class="section-title" style="margin-bottom:0;">What we engineer, <span>build, and stand</span> behind.</h2>
+            <p>Full-stack civil engineering — from structural consultancies to multi-crore turnkey government contracts. One accountable engineering team, one signature on handover.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <span class="arrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </span>
+                <div class="icon-wrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:24px; height:24px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                </div>
+                <h3>Residential & Commercial Construction</h3>
+                <p>Turnkey execution of premium homes, multi-story apartments, retail showrooms, and corporate commercial complexes from grading to completion.</p>
+            </div>
+            
+            <div class="service-card reveal delay-1">
+                <span class="arrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </span>
+                <div class="icon-wrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:24px; height:24px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h2.5M10.5 20h2.5M18 10h1.5M18 14H21m-1.5-6a2 2 0 100-4 2 2 0 000 4z" />
+                    </svg>
+                </div>
+                <h3>Government Infrastructure Works</h3>
+                <p>Execution of major highways, asphalt and cement concrete roads, structural RCC bridges, and public civic facilities to strict PWD specifications.</p>
+            </div>
+
+            <div class="service-card reveal delay-2">
+                <span class="arrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </span>
+                <div class="icon-wrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:24px; height:24px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                    </svg>
+                </div>
+                <h3>Structural Design & Analysis</h3>
+                <p>IS-code compliant RCC, structural steel framing design, computer-aided finite element analysis, seismic assessment, and structural stabilization blueprints.</p>
+            </div>
+
+            <div class="service-card reveal">
+                <span class="arrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </span>
+                <div class="icon-wrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:24px; height:24px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                </div>
+                <h3>Project Management & Quality QC</h3>
+                <p>Rigorous on-site scheduling, materials lab test supervision, budget engineering, and structural quality control audits to ensure zero compromise.</p>
+            </div>
+
+            <div class="service-card reveal delay-1">
+                <span class="arrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </span>
+                <div class="icon-wrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:24px; height:24px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                </div>
+                <h3>Structural Retrofits & Interior Fit-outs</h3>
+                <p>Strengthening compromised frames, seismic retrofit jackets, and executing premium interior turnkeys for residential estates and modern commercial spaces.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SELECTED PROJECTS GALLERY -->
+    <section id="projects">
+        <div class="portfolio-header">
+            <div class="reveal">
+                <div class="section-label">SELECTED WORK - 03</div>
+                <h2 class="section-title" style="margin-bottom: 0;">A portfolio cast in <span>concrete and steel.</span></h2>
+            </div>
+            
+            <div class="filter-dock reveal delay-1">
+                <button class="filter-btn active" data-filter="all">ALL</button>
+                <button class="filter-btn" data-filter="government">GOVERNMENT</button>
+                <button class="filter-btn" data-filter="infrastructure">INFRASTRUCTURE</button>
+                <button class="filter-btn" data-filter="residential">RESIDENTIAL</button>
+                <button class="filter-btn" data-filter="commercial">COMMERCIAL</button>
+            </div>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Project 1 (Government / Infrastructure - Featured) -->
+            <div class="project-card featured reveal" data-category="government infrastructure">
+                <img src="https://images.unsplash.com/photo-1590486803833-1c5dc8ddd4c8?q=80&w=800" alt="Pune-Nashik Highway Widening Project" loading="lazy">
+                <div class="project-card-info">
+                    <span class="proj-pill">Government • Infrastructure</span>
+                    <h3>Pune–Nashik Highway Widening (Phase II)</h3>
+                    <p>Maharashtra State Highway Authority</p>
+                </div>
+            </div>
+
+            <!-- Project 2 (Infrastructure) -->
+            <div class="project-card reveal delay-1" data-category="infrastructure government">
+                <img src="https://images.unsplash.com/photo-1541888081643-eb78f294ce9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="RCC Bridge Solapur" loading="lazy">
+                <div class="project-card-info">
+                    <span class="proj-pill">Infrastructure</span>
+                    <h3>RCC Bridge - Bhima River Crossing</h3>
+                    <p>Solapur District, MH</p>
+                </div>
+            </div>
+
+            <!-- Project 3 (Residential) -->
+            <div class="project-card reveal delay-2" data-category="residential">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Skyline Residency Pune" loading="lazy">
+                <div class="project-card-info">
+                    <span class="proj-pill">Residential</span>
+                    <h3>Skyline Residency - 14 Floor Tower</h3>
+                    <p>Baner, Pune, MH</p>
+                </div>
+            </div>
+
+            <!-- Project 4 (Government) -->
+            <div class="project-card reveal" data-category="government">
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800" alt="Civic Center Ahmednagar" loading="lazy">
+                <div class="project-card-info">
+                    <span class="proj-pill">Government</span>
+                    <h3>Civic Center & Municipal Office</h3>
+                    <p>Ahmednagar, MH</p>
+                </div>
+            </div>
+
+            <!-- Project 5 (Commercial) -->
+            <div class="project-card reveal delay-1" data-category="commercial">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800" alt="Orion Tech Park Hinjewadi" loading="lazy">
+                <div class="project-card-info">
+                    <span class="proj-pill">Commercial</span>
+                    <h3>Orion Tech Park</h3>
+                    <p>Hinjewadi, Pune, MH</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- METHODOLOGY / PROCESS SECTION -->
+    <section id="process">
+        <div class="process-header reveal">
+            <div>
+                <div class="section-label">METHODOLOGY — 04</div>
+                <h2 class="section-title" style="margin-bottom:0;">How a Unique Construction project moves <span>from sketch to handover.</span></h2>
+            </div>
+            <p>A predictable, completely transparent 5-stage engineering delivery workflow — refined over 120+ successful structures — so you always know what is happening on your site.</p>
+        </div>
+
+        <div class="timeline-steps reveal delay-1">
+            <!-- Progress loading bar (controlled via scroll JS observer) -->
+            <div class="timeline-progress-line" id="timeline-progress"></div>
+
+            <div class="step-node active" data-step="1">
+                <div class="step-circle">01</div>
+                <h4>Site Survey & Consultation</h4>
+                <p>Geotechnical soil assessments, topography surveys, boundary checking, and detailed client brief sessions.</p>
+            </div>
+            
+            <div class="step-node" data-step="2">
+                <div class="step-circle">02</div>
+                <h4>Design & Estimation</h4>
+                <p>Architectural layout modeling, structural frame loading estimations, and detailed bills of quantities (BOQ).</p>
+            </div>
+
+            <div class="step-node" data-step="3">
+                <div class="step-circle">03</div>
+                <h4>Permits & Approvals</h4>
+                <p>End-to-end statutory liaison with town municipal corporations, environmental boards, and PWD desks.</p>
+            </div>
+
+            <div class="step-node" data-step="4">
+                <div class="step-circle">04</div>
+                <h4>Execution & Supervision</h4>
+                <p>Site grading, reinforcement framing, concrete pours, QA/QC reports, and weekly structured client briefs.</p>
+            </div>
+
+            <div class="step-node" data-step="5">
+                <div class="step-circle">05</div>
+                <h4>Snagging & Handover</h4>
+                <p>Structural inspections, final cleaning, warranty documentation handovers, and defect liability support.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLIENT TESTIMONIALS -->
+    <section id="testimonials" style="background:#090c13;">
+        <div style="text-align: center; margin-bottom: 60px;" class="reveal">
+            <div class="section-label" style="justify-content: center;">VOICES - 05</div>
+            <h2 class="section-title">What clients and officials say <span>after the dust settles.</span></h2>
+        </div>
+
+        <div class="slider-layout reveal delay-1">
+            <div class="slider-viewport">
+                <div class="slider-track" id="slider-track">
+                    <!-- Slide 1 -->
+                    <div class="slide">
+                        <svg class="quote-icon" fill="currentColor" viewBox="0 0 24 24" style="width: 48px; height: 48px;">
+                            <path d="M14.017 21v-7.391c0-5.704 3.748-9.762 9-10.961l.696 1.259c-4.005 1.125-6.199 4.15-6.223 7.828h6.223V21H14.017zm-12 0v-7.391c0-5.704 3.748-9.762 9-10.961l.696 1.259c-4.005 1.125-6.199 4.15-6.223 7.828h6.223V21H2.017z"/>
+                        </svg>
+                        <p class="quote-body">"Vishwajeet's meticulous discipline on the job site and strict adherence to technical PWD codebooks make him the first contractor we trust with sensitive public structures."</p>
+                        <div class="author-info">
+                            <h4>Er. Anil Patil</h4>
+                            <span>Executive Engineer, PWD Maharashtra</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2 -->
+                    <div class="slide">
+                        <svg class="quote-icon" fill="currentColor" viewBox="0 0 24 24" style="width: 48px; height: 48px;">
+                            <path d="M14.017 21v-7.391c0-5.704 3.748-9.762 9-10.961l.696 1.259c-4.005 1.125-6.199 4.15-6.223 7.828h6.223V21H14.017zm-12 0v-7.391c0-5.704 3.748-9.762 9-10.961l.696 1.259c-4.005 1.125-6.199 4.15-6.223 7.828h6.223V21H2.017z"/>
+                        </svg>
+                        <p class="quote-body">"He delivered our custom 3BHK home two weeks ahead of schedule. The concrete finishing and overall structure are far cleaner than anything else we've seen in the neighborhood."</p>
+                        <div class="author-info">
+                            <h4>Mrs. Sneha Kulkarni</h4>
+                            <span>Homeowner, Baner</span>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="slide">
+                        <svg class="quote-icon" fill="currentColor" viewBox="0 0 24 24" style="width: 48px; height: 48px;">
+                            <path d="M14.017 21v-7.391c0-5.704 3.748-9.762 9-10.961l.696 1.259c-4.005 1.125-6.199 4.15-6.223 7.828h6.223V21H14.017zm-12 0v-7.391c0-5.704 3.748-9.762 9-10.961l.696 1.259c-4.005 1.125-6.199 4.15-6.223 7.828h6.223V21H2.017z"/>
+                        </svg>
+                        <p class="quote-body">"From optimized structural analysis reviews to site handover, Vishwajeet's engineering rigor remains consistent. He is a key partner for our large-scale development builds."</p>
+                        <div class="author-info">
+                            <h4>Mr. Rohit Shetty</h4>
+                            <span>Director, Orion Developers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dots Nav -->
+            <div class="slider-dots" id="slider-dots">
+                <button class="slider-dot active" data-slide="0" aria-label="Go to slide 1"></button>
+                <button class="slider-dot" data-slide="1" aria-label="Go to slide 2"></button>
+                <button class="slider-dot" data-slide="2" aria-label="Go to slide 3"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & FORM SECTION -->
+    <section id="contact">
+        <div class="contact-layout">
+            <div class="contact-text-wrap reveal">
+                <div class="section-label">GET IN TOUCH - 06</div>
+                <h2 class="section-title">Tell us about <span>your project.</span></h2>
+                <p>Whether you require a residential build, structural engineering consultation, or have a government tender query, fill out the form below. Our office responds with a transparent estimate within 1 business day.</p>
+                
+                <div class="contact-cards-stack">
+                    <div class="c-info-card">
+                        <div class="c-info-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:22px; height:22px;">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                        </div>
+                        <div class="c-info-content">
+                            <h4>Direct Phone</h4>
+                            <p>+91 87936 90714</p>
+                        </div>
+                    </div>
+                    
+                    <div class="c-info-card">
+                        <div class="c-info-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:22px; height:22px;">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div class="c-info-content">
+                            <h4>Email Desk</h4>
+                            <p><a href="mailto:info@uniqueconstruction.com" style="color:inherit; text-decoration:none; transition:var(--transition-smooth);" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='inherit'">info@uniqueconstruction.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="c-info-card">
+                        <div class="c-info-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:22px; height:22px;">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                        </div>
+                        <div class="c-info-content">
+                            <h4>Office HQ</h4>
+                            <p>Engineers Plaza, MIDC Road, Pune, MH</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-container reveal delay-2">
+                <!-- Success State Overlay -->
+                <div class="success-overlay" id="success-overlay">
+                    <div class="success-checkmark">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <h3>Opening Gmail...</h3>
+                    <p>We are opening Google Gmail in a new tab with your prefilled message. Please review and click "Send" in Gmail to send it to <strong>info@uniqueconstruction.com</strong>.</p>
+                    
+                    <div class="email-copy-info" style="margin-top: 15px; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 8px; border: 1px dashed var(--border); font-size: 0.85rem; color: var(--text-muted); width: 100%; box-sizing: border-box; text-align: center;">
+                        Didn't open? You can send the message manually to: <br>
+                        <strong style="color:var(--primary); font-family:var(--font-mono); display:inline-block; margin-top:5px;">info@uniqueconstruction.com</strong>
+                    </div>
+
+                    <button class="btn btn-secondary" id="reset-composer-btn" style="margin-top: 20px;">Compose Another Message</button>
+                </div>
+
+                <!-- Initial CTA screen to Compose Email -->
+                <div id="email-cta-screen" class="email-cta-screen">
+                    <div class="email-cta-icon-wrap">
+                        <div class="email-pulse-glow"></div>
+                        <svg class="email-cta-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                        </svg>
+                    </div>
+                    <h3>Ready to Start Your Project?</h3>
+                    <p>Click below to compose your enquiry. It will open in our direct email interface and route straight to our inbox.</p>
+                    <button id="start-compose-btn" class="submit-btn compose-cta-btn">
+                        <span>Compose Email</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                </div>
+
+                <!-- Email Composer screen (hidden by default) -->
+                <div id="email-composer-screen" class="email-composer-screen" style="display: none;">
+                    <!-- Mock Window Header -->
+                    <div class="composer-window-header">
+                        <div class="composer-window-dots">
+                            <span class="window-dot red"></span>
+                            <span class="window-dot yellow"></span>
+                            <span class="window-dot green"></span>
+                        </div>
+                        <div class="composer-window-title">New Message — Unique Construction</div>
+                    </div>
+                    
+                    <!-- Email Headers -->
+                    <div class="composer-header-row">
+                        <span class="composer-label">To:</span>
+                        <div class="composer-chip-email">info@uniqueconstruction.com</div>
+                    </div>
+                    
+                    <div class="composer-header-row">
+                        <span class="composer-label">Subject:</span>
+                        <input type="text" id="composer-subject" class="composer-input-field" value="Project Enquiry - Unique Construction" readonly>
+                    </div>
+                    
+                    <!-- Email Body (Textarea) -->
+                    <div class="composer-body-row">
+                        <textarea id="composer-message" class="composer-textarea" placeholder="Type your project enquiry message here... For example: estimated budget, project type, site location, timeline, and key details." required></textarea>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="composer-actions-row">
+                        <button id="cancel-compose-btn" class="btn btn-secondary cancel-btn" style="background:transparent; border:1px solid var(--border); color:var(--text-secondary);">
+                            Cancel
+                        </button>
+                        <button id="send-email-btn" class="submit-btn send-btn">
+                            <span>Send Email</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="logo">
+                    <div class="logo-symbol" style="background:var(--primary);">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:20px; height:20px;">
+                            <path d="M19 2H5c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 18H6v-2h12v2zm0-4H6v-2h12v2zm0-4H6V8h12v4zm0-6H6V4h12v2z"/>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <h2 style="color:white;">Unique Construction</h2>
+                        <span style="color:var(--accent);">CIVIL ENGINEER & CONTRACTOR</span>
+                    </div>
+                </div>
+                <p class="footer-desc">Engineering structural certainty into every foundation, highway slab, and blueprint. Class-1 registered contractor delivering civil engineering excellence across Maharashtra.</p>
+            </div>
+            
+            <div class="footer-links-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#projects">Work Portfolio</a></li>
+                    <li><a href="#process">Work Flow</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links-col">
+                <h4>Contact Desk</h4>
+                <div class="footer-contact-item">
+                    <span>📞</span>
+                    <span>+91 87936 90714</span>
+                </div>
+                <div class="footer-contact-item">
+                    <span>✉️</span>
+                    <span>info@uniqueconstruction.com</span>
+                </div>
+                <div class="footer-contact-item">
+                    <span>📍</span>
+                    <span>Office 12, Engineers Plaza, MIDC Road, Pune, Maharashtra 411019</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-txt">
+                © 2026 Unique Construction. All Rights Reserved.
+            </div>
+            <div class="footer-bottom-txt" style="color:var(--primary);">
+                Built with Discipline. Driven by Engineering.
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPTS -->
+    <script>
+        // --- 1. MOBILE MENU TOGGLE ---
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu on click of links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // --- 2. FLOATING NAV DOCK SHRINK ---
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // --- 3. SCROLL REVEAL OBSERVER ---
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Reveal only once
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // --- 4. SCROLL SPY ACTIVE NAV LINK ---
+        const sections = document.querySelectorAll('section, header');
+        const navMenuLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let currentSec = '';
+            const scrollPos = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            
+            // Edge case: if at the absolute bottom of the page, force 'contact'
+            if (scrollPos + windowHeight >= docHeight - 10) {
+                currentSec = 'contact';
+            } else {
+                sections.forEach(sec => {
+                    const sectionTop = sec.offsetTop;
+                    if (scrollPos >= (sectionTop - 180)) {
+                        currentSec = sec.getAttribute('id');
+                    }
+                });
+            }
+
+            navMenuLinks.forEach(link => {
+                link.classList.remove('active');
+                const href = link.getAttribute('href');
+                if (href && href.substring(1) === currentSec) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // --- 5. STATS ANIMATED COUNTERS ---
+        const animateStats = () => {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(num => {
+                const target = parseInt(num.getAttribute('data-target'));
+                const suffix = num.getAttribute('data-suffix') || '';
+                const duration = 2000; // 2 seconds animation
+                const start = 0;
+                const startTime = performance.now();
+                
+                const animate = (currentTime) => {
+                    const elapsedTime = currentTime - startTime;
+                    const progress = Math.min(elapsedTime / duration, 1);
+                    const current = Math.floor(progress * (target - start) + start);
+                    num.innerText = current + suffix;
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        num.innerText = target + suffix;
+                    }
+                };
+                requestAnimationFrame(animate);
+            });
+        };
+
+        // Trigger counters when stats strip enters view
+        const statsStrip = document.querySelector('.stats-strip');
+        const statsObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        statsObserver.observe(statsStrip);
+
+        // --- 6. PROJECTS INTERACTIVE FILTERS ---
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Set active class
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterVal = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    const cardCats = card.getAttribute('data-category');
+                    if (filterVal === 'all' || cardCats.includes(filterVal)) {
+                        card.style.display = 'block';
+                        // Trigger a small scale animations
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.9)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // --- 7. METHODOLOGY TIMELINE OBSERVER ---
+        const stepNodes = document.querySelectorAll('.step-node');
+        const progressLine = document.getElementById('timeline-progress');
+
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const activeStep = parseInt(entry.target.getAttribute('data-step'));
+                    
+                    // Highlight active steps
+                    stepNodes.forEach(node => {
+                        const stepNum = parseInt(node.getAttribute('data-step'));
+                        if (stepNum < activeStep) {
+                            node.classList.add('completed');
+                            node.classList.remove('active');
+                        } else if (stepNum === activeStep) {
+                            node.classList.add('active');
+                            node.classList.remove('completed');
+                        } else {
+                            node.classList.remove('active', 'completed');
+                        }
+                    });
+
+                    // Update progress line width (Percentage calculation)
+                    // Desktop horizontal progress bar triggers
+                    if (window.innerWidth > 1024) {
+                        const percent = ((activeStep - 1) / (stepNodes.length - 1)) * 80; // Bound line limits
+                        progressLine.style.width = `${percent}%`;
+                    }
+                }
+            });
+        }, {
+            threshold: 0.6,
+            rootMargin: '0px 0px -100px 0px'
+        });
+
+        stepNodes.forEach(step => timelineObserver.observe(step));
+
+        // --- 8. TESTIMONIALS SLIDER ---
+        const sliderTrack = document.getElementById('slider-track');
+        const sliderDots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+        const totalSlides = 3;
+        let slideInterval;
+
+        const updateSlider = (slideIndex) => {
+            currentSlide = slideIndex;
+            // Translate track based on slide index
+            sliderTrack.style.transform = `translateX(-${slideIndex * 33.333}%)`;
+            
+            // Update dots
+            sliderDots.forEach((dot, index) => {
+                if (index === slideIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        };
+
+        // Dots trigger clicks
+        sliderDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                const slideIndex = parseInt(dot.getAttribute('data-slide'));
+                updateSlider(slideIndex);
+                startAutoSlide(); // Restart auto sliding
+            });
+        });
+
+        const startAutoSlide = () => {
+            slideInterval = setInterval(() => {
+                let nextSlide = currentSlide + 1;
+                if (nextSlide >= totalSlides) nextSlide = 0;
+                updateSlider(nextSlide);
+            }, 6000); // Change slide every 6 seconds
+        };
+
+        startAutoSlide();
+
+        // --- 9. INTERACTIVE EMAIL COMPOSER LOGIC ---
+        const emailCtaScreen = document.getElementById('email-cta-screen');
+        const emailComposerScreen = document.getElementById('email-composer-screen');
+        const startComposeBtn = document.getElementById('start-compose-btn');
+        const cancelComposeBtn = document.getElementById('cancel-compose-btn');
+        const sendEmailBtn = document.getElementById('send-email-btn');
+        const resetComposerBtn = document.getElementById('reset-composer-btn');
+        const composerMessage = document.getElementById('composer-message');
+        const successOverlay = document.getElementById('success-overlay');
+
+        // Start Compose Button click handler
+        if (startComposeBtn) {
+            startComposeBtn.addEventListener('click', () => {
+                emailCtaScreen.style.display = 'none';
+                emailComposerScreen.style.display = 'flex';
+                composerMessage.focus();
+            });
+        }
+
+        // Cancel/Back Button click handler
+        if (cancelComposeBtn) {
+            cancelComposeBtn.addEventListener('click', () => {
+                composerMessage.value = '';
+                emailComposerScreen.style.display = 'none';
+                emailCtaScreen.style.display = 'flex';
+            });
+        }
+
+        // Send Email click handler (triggers mailto and success screen)
+        if (sendEmailBtn) {
+            sendEmailBtn.addEventListener('click', () => {
+                const messageText = composerMessage.value.trim();
+                
+                if (!messageText) {
+                    // Shake target if empty
+                    composerMessage.classList.add('warning-shake');
+                    composerMessage.focus();
+                    setTimeout(() => {
+                        composerMessage.classList.remove('warning-shake');
+                    }, 400);
+                    return;
+                }
+
+                const email = 'info@uniqueconstruction.com';
+                const subject = 'Project Enquiry - Unique Construction';
+                const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(messageText)}`;
+                
+                // Open Gmail compose window in a new tab
+                window.open(gmailUrl, '_blank');
+
+                // Open in-app overlay for next steps
+                successOverlay.classList.add('active');
+            });
+        }
+
+        // Close success overlay and go back to CTA screen
+        if (resetComposerBtn) {
+            resetComposerBtn.addEventListener('click', () => {
+                composerMessage.value = '';
+                successOverlay.classList.remove('active');
+                emailComposerScreen.style.display = 'none';
+                emailCtaScreen.style.display = 'flex';
+            });
+        }
+    </script>
+</body>
+
+</html>
